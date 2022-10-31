@@ -1,0 +1,42 @@
+{
+  "name": "typegeez",
+  "version": "0.0.0",
+  "description": "Type Geez/Tigrinya",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "hot:dev": "webpack-dev-server",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "unit": "jest --config jest.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yonashailug/typegeez.git"
+  },
+  "keywords": [
+    "Geez",
+    "Tigrinya",
+    "Type"
+  ],
+  "author": "Yonas Hailu <yonashailug@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yonashailug/typegeez/issues"
+  },
+  "homepage": "https://github.com/yonashailug/typegeez#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.19.3",
+    "@babel/core": "^7.19.6",
+    "@babel/preset-env": "^7.19.4",
+    "babel-loader": "^9.0.0",
+    "babel-preset-react-app": "^10.0.1",
+    "html-webpack-plugin": "^5.5.0",
+    "jest": "^29.2.2",
+    "jest-environment-jsdom": "^29.2.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.11.1"
+  }
+}
