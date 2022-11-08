@@ -1,13 +1,16 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
 
-module.exports = { 
+module.exports = {
   mode: 'development',
   entry: path.resolve('./src/index.js'),
   output: { path: path.resolve('./public') },
-  plugins: [ 
-    new HtmlWebpackPlugin({ inject: true, template: path.resolve('./src/index.html') })
+  plugins: [
+    new HtmlWebpackPlugin({ inject: true, template: path.resolve('./src/index.html') }),
   ],
+  optimization: {
+    realContentHash: true
+  },
   module: {
     rules: [
       {
@@ -19,15 +22,15 @@ module.exports = {
         test: /\.(scss|sass)$/,
         exclude: /\.module\.(scss|sass)$/,
         use: ['style-loader', 'css-loader', 'sass-loader']
-      },
+      }
     ]
   },
-  devServer: { 
+  devServer: {
     compress: true,
     static: { directory: path.resolve('./public') },
     historyApiFallback: { index: '/' },
     host: 'localhost',
-    port: 4001,
+    port: 4001
   },
-  devtool: 'source-map',
+  devtool: 'source-map'
 }
