@@ -11,6 +11,12 @@ export default defineConfig({
   preflights: [
     {
       getCSS: ({ theme }) => `
+        *,
+        :after,
+        :before {
+          box-sizing: border-box;
+          border: 0 solid;
+        }
         * {
           color: ${theme.colors.gray?.[700] ?? '#333'};
           padding: 0;
@@ -19,11 +25,19 @@ export default defineConfig({
         body {
           height: 100vh;
         }
-        button, input {
+        button, input, optgroup, select, textarea {
           font-size: inherit;
           color: inherit;
           line-height: inherit;
           font-family: inherit;
+        }
+        button {
+          -webkit-appearance: button;
+          background-color: transparent;
+          background-image: none;
+        }
+        [role=button], button {
+          cursor: pointer;
         }
         code, kbd, pre, samp {
           font-family: ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;
@@ -45,6 +59,9 @@ export default defineConfig({
         }
         blockquote, dd, dl, figure, h1, h2, h3, h4, h5, h6, hr, p, pre {
           margin: 0;
+        }
+        a {
+          color: inherit;
         }
       `
     }
