@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { useGeez } from './useGeez'
 
-import { useEventListener } from './useEventListener'
+import { useGeez } from './useGeez'
+import { useEventListener, useApi } from './hooks'
 
 const Entry = () => {
   const [output, setOutput] = useGeez()
@@ -73,6 +73,17 @@ const Entry = () => {
   const moveIndex = (delta) => {
     setSelectIndex((selectIndex + delta + output.length) % output.length)
   }
+
+  const data = useApi({
+    method: 'GET',
+    url: 'http://mermru.com/dictionary/',
+    query: {
+      q: 'በርሀ',
+      search: ''
+    }
+  })
+
+  console.log(data)
 
   return (
     <div className='grid lg:cols-2 gap-2 h-full of-hidden px-8' grid="~ lg:cols-2">
