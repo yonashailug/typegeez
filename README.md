@@ -1,6 +1,6 @@
 # Type Geez/Tigrinya
 
-Type English word and you get a Geez/Tigrinya version of the word.
+Type English word and you get the Geez/Tigrinya version of the word.
 Check it [here](https://heartfelt-bonbon-3b9aca.netlify.app/).
 
 ## Getting started
@@ -8,6 +8,5 @@ Check it [here](https://heartfelt-bonbon-3b9aca.netlify.app/).
 - Start development server `npm run hot:dev` and open at `http://localhost:4001/`
 - Build the project `npm run build`
 
-> **NOTE:** You may need to re-build the project if you make changes on style.
-
+    > **NOTE:** You may need to re-build the project if you make changes on style.
 
