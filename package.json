@@ -2,12 +2,12 @@
   "name": "typegeez",
   "version": "0.1.0",
   "description": "Type Geez/Tigrinya",
+  "private": true,
   "main": "index.js",
   "scripts": {
     "build": "webpack && unocss src/*.js --out-file=public/uno.css",
     "hot:dev": "webpack-dev-server",
     "css": "unocss src/*.js --out-file='public/uno.css'",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "unit": "jest --config jest.config.js",
     "lint:fix": "eslint src/. --ext js --fix"
   },
