@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 
 import { useGeez } from './useGeez'
-import { useEventListener, useApi } from './hooks'
+import { useEventListener } from './hooks'
 
 const Entry = () => {
   const [output, setOutput] = useGeez()
@@ -74,16 +74,15 @@ const Entry = () => {
     setSelectIndex((selectIndex + delta + output.length) % output.length)
   }
 
-  const data = useApi({
-    method: 'GET',
-    url: 'http://mermru.com/dictionary/',
-    query: {
-      q: 'በርሀ',
-      search: ''
-    }
-  })
-
-  console.log(data)
+  // TOD: - CORS issues, fix me
+  // const data = useApi({
+  //   method: 'GET',
+  //   url: 'http://mermru.com/dictionary/',
+  //   query: {
+  //     q: 'በርሀ',
+  //     search: ''
+  //   }
+  // })
 
   return (
     <div className='grid lg:cols-2 gap-2 h-full of-hidden px-8' grid="~ lg:cols-2">
