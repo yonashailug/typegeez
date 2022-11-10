@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 
-import { useGeez } from './useGeez'
-import { useEventListener } from './hooks'
+import { useGeez, useEventListener } from './hooks'
 
 const Entry = () => {
   const [output, setOutput] = useGeez()
@@ -102,8 +101,8 @@ const Entry = () => {
           <input type={'text'}
               ref={inputRef}
               onChange={handleUserTyping}
-              placeholder='Type something here'
-              aria-label="Type something here"
+              placeholder='Type any word here'
+              aria-label="Type any word here"
               autoComplete="off"
               className='b-1 px-6 py-4 border-none w-full bg-transparent !outline-none'
               />

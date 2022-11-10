@@ -1,5 +1,9 @@
-import { useRef, useEffect, useState } from 'react'
+import { useRef, useEffect, useState, useCallback } from 'react'
 import { $fetch } from 'ohmyfetch'
+
+import TypeGeez from './TypeGeez'
+
+const typeGeez = new TypeGeez()
 
 export function useEventListener (eventName, handler, element = window) {
   const savedHandler = useRef()
@@ -27,10 +31,30 @@ export function useApi (config) {
   useEffect(() => {
     const { query, url } = config
     $fetch(url, { query }).then(response => {
-      console.log(response)
       setData(response)
     })
   }, [])
 
   return data
+}
+
+export function useGeez () {
+  const [value, setValue] = useState('')
+  const [output, setOutput] = useState([])
+  const result = []
+  const translated = []
+
+  useEffect(() => {
+    typeGeez.getCombination(value.toLowerCase(), [], result)
+
+    result.forEach(item => {
+      typeGeez.lookup([...item], [], translated)
+    })
+
+    setOutput(translated.map(item => item.join('')))
+  }, [value])
+
+  const handleEvent = useCallback((newValue) => setValue(newValue), [])
+
+  return [output, handleEvent]
 }
