@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack && unocss src/*.js --out-file=public/uno.css",
-    "hot:dev": "webpack-dev-server",
+    "dev": "webpack-dev-server",
     "css": "unocss src/*.js --out-file='public/uno.css'",
     "unit": "jest --config jest.config.js",
     "lint:fix": "eslint src/. --ext js --fix"
