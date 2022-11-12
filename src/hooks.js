@@ -41,13 +41,20 @@ export function useApi (config) {
 export function useGeez () {
   const [value, setValue] = useState('')
   const [output, setOutput] = useState([])
-  const result = []
-  const translated = []
 
   useEffect(() => {
-    typeGeez.getCombination(value.toLowerCase(), [], result)
+    const results = []
+    const values = value.split(' ').filter(item => item)
 
-    result.forEach(item => {
+    values.forEach(item => {
+      let result = []
+      typeGeez.getCharacterCombination(item.toLowerCase(), [], result)
+      results.push(result)
+      result = []
+    })
+
+    const translated = []
+    results[results.length - 1]?.forEach(item => {
       typeGeez.lookup([...item], [], translated)
     })
 

@@ -213,7 +213,7 @@ class TypeGeez {
     if (currentItems.length) collect.push(currentItems)
   }
 
-  getCombination (item, currentItems, collect) {
+  getCharacterCombination (item, currentItems, collect) {
     if (collect.length > this.lookupLimit) return
 
     for (let i = 0; i < item.length; i++) {
@@ -224,7 +224,7 @@ class TypeGeez {
 
       if (this.doubleConsonants.includes(item.substring(i, i + 2))) {
         if (this.vowels.includes(item.charAt(i + 2))) {
-          this.getCombination(
+          this.getCharacterCombination(
             item.substring(i + 3),
             [...currentItems, item.substring(i, i + 3)],
             collect)
@@ -234,12 +234,12 @@ class TypeGeez {
         continue
       }
 
-      this.getCombination(
+      this.getCharacterCombination(
         item.substring(i + 2),
         [...currentItems, item.substring(i, i + 2)],
         collect)
 
-      return this.getCombination(
+      return this.getCharacterCombination(
         item.substring(i + 1),
         [...currentItems, item.substring(i, i + 1)],
         collect)
