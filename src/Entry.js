@@ -4,6 +4,7 @@ import { useGeez, useEventListener } from './hooks'
 
 const Entry = () => {
   const [output, setOutput] = useGeez()
+  const [previousOutput, setPreviousOutput] = useState('')
   const [hasValue, setHasValue] = useState(false)
   const inputRef = useRef(null)
   const [currentWord, setCurrentWord] = useState('')
@@ -11,7 +12,7 @@ const Entry = () => {
   const [isCopied, setIsCopied] = useState(false)
 
   useEffect(() => {
-    if (output) {
+    if (output.length) {
       setSelectIndex(0)
       setCurrentWord(output[0])
     }
@@ -30,7 +31,16 @@ const Entry = () => {
 
   const handleSelectItem = (word, idx) => {
     setSelectIndex(idx)
+    const values = inputRef.current.value.trim().split(/[\s]/)
+    const prevValues = previousOutput.trim().split(/[\s]/)
     setCurrentWord(word)
+
+    if (prevValues.length >= values.length) {
+      prevValues[prevValues.length - 1] = word
+      setPreviousOutput(prevValues.join(' '))
+    } else {
+      setPreviousOutput(previousOutput + ' ' + word)
+    }
   }
 
   const copyToClipboard = (word) => {
@@ -44,6 +54,7 @@ const Entry = () => {
     setOutput('')
     setHasValue(false)
     setCurrentWord('')
+    setPreviousOutput('')
     setSelectIndex(0)
     inputRef.current.focus()
   }
@@ -58,10 +69,14 @@ const Entry = () => {
     } else if (e.key === 'Enter') {
       const value = output.at(selectIndex)
       if (value) {
-        setCurrentWord(value)
+        handleSelectItem(value, selectIndex)
       }
     } else if (e.key === 'Escape') {
       clearUserInput()
+    } else if (e.code === 'Space') {
+      if (output.length && selectIndex === 0) {
+        handleSelectItem(output[0], selectIndex)
+      }
     }
 
     if (e.key.match(/^[\w|-]$/) && !e.metaKey && !e.ctrlKey && !e.altKey && !e.shiftKey) {
@@ -123,11 +138,11 @@ const Entry = () => {
         </div>}
       </div>
       <div className='py-8 px-8 of-auto h-full'>
-        {currentWord && <div>
-          <h2 className='text-3xl font-light'>{currentWord + ' '}
+        {previousOutput && <div>
+          <h2 className='text-3xl font-light'>{previousOutput + ' '}
             <button
               className={(!isCopied ? 'i-carbon-copy ' : 'i-carbon-checkmark-outline text-green op100') + ' op50 w-4 h-4 hover:op-100 cursor-pointer ma'}
-              title="Copy" onClick={() => copyToClipboard(currentWord)}></button>
+              title="Copy" onClick={() => copyToClipboard(previousOutput)}></button>
           </h2>
           <div className='gap-4 text-left'>
             <div>
@@ -136,7 +151,7 @@ const Entry = () => {
                 <div className='row flex-wrap gap-2 px-4 py-2 items-center'>
                   <div className='gap-1'>
                     <div className='row gap-2 items-center'>
-                      <code className='text-hex-ab5e3f'>{currentWord}</code>
+                      <code className='text-hex-ab5e3f'>{previousOutput}</code>
                     </div>
                     <div className='flex-auto'></div>
                   </div>
