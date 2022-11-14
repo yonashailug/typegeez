@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { version } from './../package.json'
 
 import { useGeez, useEventListener } from './hooks'
 
@@ -7,14 +8,12 @@ const Entry = () => {
   const [previousOutput, setPreviousOutput] = useState('')
   const [hasValue, setHasValue] = useState(false)
   const inputRef = useRef(null)
-  const [currentWord, setCurrentWord] = useState('')
   const [selectIndex, setSelectIndex] = useState(0)
   const [isCopied, setIsCopied] = useState(false)
 
   useEffect(() => {
     if (output.length) {
       setSelectIndex(0)
-      setCurrentWord(output[0])
     }
   }, [output])
 
@@ -33,7 +32,6 @@ const Entry = () => {
     setSelectIndex(idx)
     const values = inputRef.current.value.trim().split(/[\s]/)
     const prevValues = previousOutput.trim().split(/[\s]/)
-    setCurrentWord(word)
 
     if (prevValues.length >= values.length) {
       prevValues[prevValues.length - 1] = word
@@ -53,7 +51,6 @@ const Entry = () => {
     inputRef.current.value = ''
     setOutput('')
     setHasValue(false)
-    setCurrentWord('')
     setPreviousOutput('')
     setSelectIndex(0)
     inputRef.current.focus()
@@ -105,6 +102,7 @@ const Entry = () => {
           <h1>
             <span className='font-400 text-lg leading-1em block'>Type Geez/Tigrinya</span>
           </h1>
+          <div className='text-xs op-30 ml-2 self-end leading-12px'> v{version}</div>
           <div className='flex-auto'></div>
 
           <div className='row gap4 text-lg text-gray4 items-center'>
@@ -139,7 +137,7 @@ const Entry = () => {
       </div>
       <div className='py-8 px-8 of-auto h-full'>
         {previousOutput && <div>
-          <h2 className='text-3xl font-light'>{previousOutput + ' '}
+          <h2 className='text-3xl font-light'>{previousOutput}
             <button
               className={(!isCopied ? 'i-carbon-copy ' : 'i-carbon-checkmark-outline text-green op100') + ' op50 w-4 h-4 hover:op-100 cursor-pointer ma'}
               title="Copy" onClick={() => copyToClipboard(previousOutput)}></button>

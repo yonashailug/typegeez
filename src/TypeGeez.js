@@ -181,7 +181,7 @@ dictionary.set('i', ['ኢ', 'እ', 'ይ'])
 dictionary.set('o', ['ኦ'])
 dictionary.set('u', ['ኡ'])
 
-const LOOKUP_LIMIT = 7 // Golden number
+const LOOKUP_LIMIT = 7 // Golden number :)
 
 class TypeGeez {
   constructor (options) {

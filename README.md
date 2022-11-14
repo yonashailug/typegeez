@@ -9,3 +9,6 @@ Check it [here](https://heartfelt-bonbon-3b9aca.netlify.app/).
 - Build the project `npm run build`
     > **NOTE:** You may need to re-build the project if you make changes on style.
 
+
+@Task
+- Add numbers
