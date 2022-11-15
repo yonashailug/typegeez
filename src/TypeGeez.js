@@ -271,7 +271,7 @@ class TypeGeez {
   }
 
   numbersToGeez (number) {
-    if (number === 0) return ''
+    if (number < 0 || number === 0) return ''
 
     if (numbers.get(number)) {
       return numbers.get(number)

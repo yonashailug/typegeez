@@ -8,7 +8,3 @@ Check it [here](https://heartfelt-bonbon-3b9aca.netlify.app/).
 - Start development server `npm run dev` and open at `http://localhost:4001/`
 - Build the project `npm run build`
     > **NOTE:** You may need to re-build the project if you make changes on style.
-
-
-@Task
-- Add numbers
