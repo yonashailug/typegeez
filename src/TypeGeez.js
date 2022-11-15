@@ -1,4 +1,26 @@
 const dictionary = new Map()
+const numbers = new Map()
+
+numbers.set(1, '፩')
+numbers.set(2, '፪')
+numbers.set(3, '፫')
+numbers.set(4, '፬')
+numbers.set(5, '፭')
+numbers.set(6, '፮')
+numbers.set(7, '፯')
+numbers.set(8, '፰')
+numbers.set(9, '፱')
+numbers.set(10, '፲')
+numbers.set(20, '፳')
+numbers.set(30, '፴')
+numbers.set(40, '፵')
+numbers.set(50, '፶')
+numbers.set(60, '፷')
+numbers.set(70, '፸')
+numbers.set(80, '፹')
+numbers.set(90, '፺')
+numbers.set(100, '፻')
+numbers.set(10000, '፼')
 
 dictionary.set('ha', ['ሃ', 'ሓ', 'ኃ'])
 dictionary.set('he', ['ሀ', 'ሄ', 'ሐ', 'ሔ', 'ኀ', 'ኄ'])
@@ -246,6 +268,26 @@ class TypeGeez {
     }
 
     collect.push(currentItems)
+  }
+
+  numbersToGeez (number) {
+    if (number === 0) return ''
+
+    if (numbers.get(number)) {
+      return numbers.get(number)
+    }
+
+    if (number > 10 && number < 100) {
+      return numbers.get(Math.floor(number / 10) * 10) + this.numbersToGeez(number % 10)
+    }
+
+    if (number > 100 && number < 10000) {
+      return this.numbersToGeez(Math.floor(number / 100)) + numbers.get(100) + this.numbersToGeez(number % 100)
+    }
+
+    if (number > 10000) {
+      return this.numbersToGeez(Math.floor(number / 10000)) + numbers.get(10000) + this.numbersToGeez(number % 10000)
+    }
   }
 }
 
