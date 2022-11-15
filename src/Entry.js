@@ -102,7 +102,7 @@ const Entry = () => {
           <h1>
             <span className='font-400 text-lg leading-1em block'>Type Geez/Tigrinya</span>
           </h1>
-          <div className='text-xs op-30 ml-2 self-end leading-12px'> v{version}</div>
+          <div className='text-xs op-30 ml-2 self-end leading-12px px-2'>v{version}</div>
           <div className='flex-auto'></div>
 
           <div className='row gap4 text-lg text-gray4 items-center'>

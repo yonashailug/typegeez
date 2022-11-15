@@ -43,22 +43,27 @@ export function useGeez () {
   const [output, setOutput] = useState([])
 
   useEffect(() => {
-    const results = []
-    const values = value.split(' ').filter(item => item)
+    if (value && !isNaN(value)) {
+      const result = typeGeez.numbersToGeez(Number(value))
+      setOutput([result || ''])
+    } else {
+      const results = []
+      const values = value.split(' ').filter(item => item)
 
-    values.forEach(item => {
-      let result = []
-      typeGeez.getCharacterCombination(item.toLowerCase(), [], result)
-      results.push(result)
-      result = []
-    })
+      values.forEach(item => {
+        let result = []
+        typeGeez.getCharacterCombination(item.toLowerCase(), [], result)
+        results.push(result)
+        result = []
+      })
 
-    const translated = []
-    results[results.length - 1]?.forEach(item => {
-      typeGeez.lookup([...item], [], translated)
-    })
+      const translated = []
+      results[results.length - 1]?.forEach(item => {
+        typeGeez.lookup([...item], [], translated)
+      })
 
-    setOutput(translated.map(item => item.join('')))
+      setOutput(translated.map(item => item.join('')))
+    }
   }, [value])
 
   const handleEvent = useCallback((newValue) => setValue(newValue), [])
