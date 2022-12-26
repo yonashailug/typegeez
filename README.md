@@ -1,7 +1,7 @@
 # Type Geez/Tigrinya
 
 Type English word and you get the Geez/Tigrinya version of the word.
-Check it [here](https://heartfelt-bonbon-3b9aca.netlify.app/).
+Check it [here](https://typegeez.netlify.app).
 
 ## Getting started
 - Install packages `npm install`
